@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CAFÉ CONTROL — Inicio</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            crema: '#FDFBF7',
+            'crema-suave': '#F5EFE6',
+            'crema-oscura': '#E8DFC8',
+            espresso: '#1C130E',
+            tinta: '#2B1B12',
+            cacao: '#4A3427',
+            ambar: '#D49B35',
+            'ambar-claro': '#F3C068',
+            borbon: '#A03E2B',
+            cafetal: '#3D5A45',
+            'cafetal-claro': '#5F8269',
+          },
+          fontFamily: {
+            serif: ['Fraunces', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          boxShadow: {
+            'artesanal': '0 12px 36px -8px rgba(28, 19, 14, 0.12)',
+            'dorado': '0 8px 24px -4px rgba(212, 155, 53, 0.25)',
+          }
+        }
+      }
+    };
+  </script>
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-crema text-tinta font-sans selection:bg-ambar selection:text-white antialiased overflow-x-hidden">
+
+  <!-- Header / Navigation -->
+  <header class="sticky top-0 z-50 glass-panel border-b border-tinta/10 transition-all duration-300">
+    <nav class="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+      
+      <a href="index.html" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-full bg-espresso flex items-center justify-center text-ambar group-hover:scale-105 transition-transform duration-300 border border-ambar/30 shadow-md">
+          <svg class="w-6 h-6 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+            <path d="M6 1v3" stroke-linecap="round"/>
+            <path d="M10 1v3" stroke-linecap="round"/>
+            <path d="M14 1v3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <span class="font-serif font-bold text-xl tracking-tight text-espresso block leading-none">CAFÉ CONTROL</span>
+          <span class="text-[10px] tracking-widest text-ambar uppercase font-semibold">Finca de Especialidad</span>
+        </div>
+      </a>
+
+      <div class="hidden md:flex items-center gap-8 font-medium text-sm text-cacao">
+        <a href="index.html" class="text-borbon font-bold relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-borbon">Inicio</a>
+        <a href="perfil.html" class="hover:text-borbon transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-borbon hover:after:w-full after:transition-all">Perfil Sensorial</a>
+        <a href="trazabilidad.html" class="hover:text-borbon transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-borbon hover:after:w-full after:transition-all">Trazabilidad</a>
+      </div>
+
+      <div class="hidden md:flex items-center gap-4">
+        <button onclick="openModal()" class="px-4 py-2.5 rounded-full border border-ambar/50 text-cacao font-semibold text-xs tracking-wider uppercase hover:bg-ambar hover:text-white transition-all duration-300 shadow-sm flex items-center gap-2">
+          <svg class="w-4 h-4 text-ambar hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          Ficha Técnica Q-Grader
+        </button>
+      </div>
+
+      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden p-2 text-espresso hover:text-borbon focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </nav>
+
+    <div id="mobile-menu" class="hidden md:hidden bg-crema-suave border-b border-tinta/10 px-6 py-4 space-y-3">
+      <a href="index.html" class="block font-medium text-borbon py-2 border-b border-tinta/5 font-bold">Inicio</a>
+      <a href="perfil.html" class="block font-medium text-espresso py-2 border-b border-tinta/5">Perfil Sensorial</a>
+      <a href="trazabilidad.html" class="block font-medium text-espresso py-2 border-b border-tinta/5">Trazabilidad</a>
+      <button onclick="openModal(); toggleMobileMenu();" class="w-full mt-2 py-3 bg-borbon text-white font-medium rounded-lg text-center text-sm shadow">
+        Ver Ficha Técnica Q-Grader
+      </button>
+    </div>
+  </header>
+
+  <!-- Sección Inicio -->
+  <section class="relative pt-8 pb-20 lg:py-28 overflow-hidden">
+    <div class="absolute top-1/4 -left-20 w-80 h-80 bg-ambar/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-10 right-0 w-96 h-96 bg-borbon/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-crema-oscura/60 border border-ambar/30 text-cacao text-xs font-semibold uppercase tracking-wider shadow-sm">
+          <span class="w-2.5 h-2.5 rounded-full bg-cafetal animate-pulse"></span>
+          <span>Proyecto Destacado • Feria de Logros 2026</span>
+          <span class="bg-borbon text-white text-[10px] px-2 py-0.5 rounded-full font-bold">88+ Q-Score</span>
+        </div>
+
+        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-extrabold text-espresso tracking-tight leading-[1.1]">
+          El arte y la ciencia del <span class="text-borbon italic">café de especialidad.</span>
+        </h1>
+
+        <p class="text-lg text-cacao/90 max-w-2xl font-normal leading-relaxed">
+          Café Control combina procesos agrícolas sostenibles a más de 1,200 metros sobre el nivel del mar con tecnología de control microclimático para entregar una taza equilibrada, limpia y inolvidable.
+        </p>
+
+        <div class="pt-2 flex flex-wrap items-center gap-4">
+          <a href="perfil.html" class="px-8 py-4 bg-borbon hover:bg-borbon/90 text-white font-semibold rounded-xl shadow-lg shadow-borbon/20 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-3 group">
+            <span>Explorar Perfil Sensorial</span>
+            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+          
+          <button onclick="openModal()" class="px-7 py-4 bg-crema-suave hover:bg-crema-oscura/80 text-espresso font-semibold rounded-xl border border-tinta/15 transition-all duration-300 flex items-center gap-2 shadow-sm">
+            <span>Ficha del Proyecto</span>
+          </button>
+        </div>
+
+        <div class="pt-8 border-t border-tinta/10 grid grid-cols-3 gap-4 max-w-xl">
+          <div class="p-3 rounded-lg bg-crema-suave/50 border border-tinta/5">
+            <div class="font-serif text-2xl lg:text-3xl font-bold text-borbon">100%</div>
+            <div class="text-xs text-cacao/80 font-medium mt-0.5">Arábica Estricta Altura</div>
+          </div>
+          <div class="p-3 rounded-lg bg-crema-suave/50 border border-tinta/5">
+            <div class="font-serif text-2xl lg:text-3xl font-bold text-ambar">1,200m</div>
+            <div class="text-xs text-cacao/80 font-medium mt-0.5">MSNM Cultivo Finca</div>
+          </div>
+          <div class="p-3 rounded-lg bg-crema-suave/50 border border-tinta/5">
+            <div class="font-serif text-2xl lg:text-3xl font-bold text-cafetal">3ª Gen.</div>
+            <div class="text-xs text-cacao/80 font-medium mt-0.5">Tradición e Innovación</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carousel -->
+      <div class="lg:col-span-5">
+        <div class="relative w-full max-w-lg mx-auto bg-espresso rounded-2xl overflow-hidden shadow-artesanal border border-ambar/20 group" id="carousel-container">
+          <div class="relative h-[420px] sm:h-[480px] w-full overflow-hidden">
+            
+            <div class="carousel-slide absolute inset-0 opacity-100 transition-opacity duration-700 ease-in-out">
+              <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1000&q=80" alt="Finca de café en la montaña" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-espresso via-espresso/30 to-transparent"></div>
+              <div class="absolute bottom-0 inset-x-0 p-6 text-crema space-y-1">
+                <span class="inline-block px-2.5 py-1 bg-ambar/90 text-espresso text-[11px] font-bold rounded uppercase tracking-wider">Origen Finca</span>
+                <h3 class="font-serif text-xl font-bold text-white">Cultivos bajo sombra a +1,200m</h3>
+                <p class="text-xs text-crema/80 font-light">Microclima ideal que ralentiza la maduración para mayor concentración de azúcares naturales.</p>
+              </div>
+            </div>
+
+            <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out">
+              <img src="https://images.unsplash.com/photo-1524350876685-274059332603?auto=format&fit=crop&w=1000&q=80" alt="Cosecha de cerezas de café rojas" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-espresso via-espresso/30 to-transparent"></div>
+              <div class="absolute bottom-0 inset-x-0 p-6 text-crema space-y-1">
+                <span class="inline-block px-2.5 py-1 bg-borbon text-white text-[11px] font-bold rounded uppercase tracking-wider">Cosecha Selectiva</span>
+                <h3 class="font-serif text-xl font-bold text-white">Recolecta 100% manual</h3>
+                <p class="text-xs text-crema/80 font-light">Selección grano a grano en su punto óptimo de madurez (grados Brix garantizados).</p>
+              </div>
+            </div>
+
+            <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out">
+              <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1000&q=80" alt="Control de Tueste artesanal" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-espresso via-espresso/30 to-transparent"></div>
+              <div class="absolute bottom-0 inset-x-0 p-6 text-crema space-y-1">
+                <span class="inline-block px-2.5 py-1 bg-cafetal text-white text-[11px] font-bold rounded uppercase tracking-wider">Proceso & Tueste</span>
+                <h3 class="font-serif text-xl font-bold text-white">Curvas de tueste controladas</h3>
+                <p class="text-xs text-crema/80 font-light">Monitoreo térmico digital para resaltar acidez brillante y notas aromáticas complejas.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <button onclick="prevSlide()" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-crema/80 hover:bg-crema text-espresso flex items-center justify-center shadow-lg transition-all transform hover:scale-110 focus:outline-none z-10">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          
+          <button onclick="nextSlide()" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-crema/80 hover:bg-crema text-espresso flex items-center justify-center shadow-lg transition-all transform hover:scale-110 focus:outline-none z-10">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+          </button>
+
+          <div class="absolute top-0 inset-x-0 h-1 bg-white/20 z-10">
+            <div id="carousel-progress" class="h-full bg-ambar transition-all duration-300"></div>
+          </div>
+
+          <div class="absolute bottom-4 right-6 flex items-center gap-2 z-10">
+            <button onclick="goToSlide(0)" class="carousel-dot w-2.5 h-2.5 rounded-full bg-white/50 hover:bg-white transition-all"></button>
+            <button onclick="goToSlide(1)" class="carousel-dot w-2.5 h-2.5 rounded-full bg-white/50 hover:bg-white transition-all"></button>
+            <button onclick="goToSlide(2)" class="carousel-dot w-2.5 h-2.5 rounded-full bg-white/50 hover:bg-white transition-all"></button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

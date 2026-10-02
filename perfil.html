@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CAFÉ CONTROL — Creador de Experiencia Personalizada</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            crema: '#FDFBF7',
+            'crema-suave': '#F5EFE6',
+            'crema-oscura': '#E8DFC8',
+            espresso: '#1C130E',
+            tinta: '#2B1B12',
+            cacao: '#4A3427',
+            ambar: '#D49B35',
+            'ambar-claro': '#F3C068',
+            borbon: '#A03E2B',
+            cafetal: '#3D5A45',
+            'cafetal-claro': '#5F8269',
+          },
+          fontFamily: {
+            serif: ['Fraunces', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          boxShadow: {
+            'artesanal': '0 12px 36px -8px rgba(28, 19, 14, 0.12)',
+            'dorado': '0 8px 24px -4px rgba(212, 155, 53, 0.25)',
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-crema text-tinta font-sans selection:bg-ambar selection:text-white antialiased overflow-x-hidden min-h-screen flex flex-col justify-between">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-crema/90 backdrop-blur-md border-b border-tinta/10">
+    <nav class="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+      
+      <!-- Enlace corregido a index.html -->
+      <a href="index.html" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-full bg-espresso flex items-center justify-center text-ambar group-hover:scale-105 transition-transform duration-300 border border-ambar/30 shadow-md">
+          <svg class="w-6 h-6 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+            <path d="M6 1v3" stroke-linecap="round"/>
+            <path d="M10 1v3" stroke-linecap="round"/>
+            <path d="M14 1v3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <span class="font-serif font-bold text-xl tracking-tight text-espresso block leading-none">CAFÉ CONTROL</span>
+          <span class="text-[10px] tracking-widest text-ambar uppercase font-semibold">Custom Coffee Lab</span>
+        </div>
+      </a>
+
+      <!-- Menú de navegación agregado -->
+      <div class="hidden md:flex items-center gap-8 font-medium text-sm text-cacao">
+        <a href="index.html" class="hover:text-borbon transition-colors">Inicio</a>
+        <a href="perfil.html" class="hover:text-borbon transition-colors">Perfil Sensorial</a>
+        <a href="trazabilidad.html" class="hover:text-borbon transition-colors">Trazabilidad</a>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <span class="text-xs font-semibold text-cacao/70 hidden sm:inline">¿Dudas? Chatea con un Barista</span>
+        <a href="#quiz" class="px-5 py-2.5 rounded-full bg-borbon text-white font-semibold text-xs tracking-wider uppercase hover:bg-espresso transition-all duration-300 shadow-md">
+          Crear mi Blend
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero & Quiz Section -->
+  <main class="py-12 lg:py-16 px-6 lg:px-12 max-w-5xl mx-auto w-full">
+    
+    <!-- Hero Header -->
+    <div class="text-center max-w-2xl mx-auto space-y-4 mb-10">
+      <span class="px-3 py-1 bg-ambar/15 text-borbon rounded-full text-xs font-bold tracking-widest uppercase border border-ambar/30">
+        Experiencia Personalizada
+      </span>
+      <h1 class="font-serif text-3xl sm:text-5xl font-extrabold text-espresso leading-tight">
+        No compres cualquier café. Diseña el tuyo.
+      </h1>
+      <p class="text-cacao/80 text-sm sm:text-base">
+        Responde 3 preguntas rápidas y descubriremos la variedad exacta, el nivel de tueste y la molienda ideal según tu forma de tomar café.
+      </p>
+    </div>
+
+    <!-- Quiz Box / Tarjeta Interactiva -->
+    <div id="quiz-container" class="bg-crema-suave border border-tinta/10 rounded-3xl p-6 sm:p-10 shadow-artesanal relative overflow-hidden">
+      
+      <!-- Paso 1: Método de preparación -->
+      <div id="step-1" class="quiz-step space-y-6">
+        <div class="flex justify-between items-center border-b border-tinta/10 pb-4">
+          <span class="text-xs font-bold text-ambar uppercase tracking-wider">Paso 1 de 3</span>
+          <span class="text-xs text-cacao/60 font-semibold">¿Cómo preparas tu café?</span>
+        </div>
+
+        <h3 class="font-serif text-2xl font-bold text-espresso">¿Cuál es tu método favorito en casa?</h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <button onclick="nextStep(1, 'espresso')" class="p-5 rounded-2xl border-2 border-tinta/10 bg-crema hover:border-borbon hover:shadow-md transition-all text-left group">
+            <span class="text-2xl block mb-2">☕</span>
+            <h4 class="font-bold text-espresso group-hover:text-borbon">Espresso / Italiana</h4>
+            <p class="text-xs text-cacao/70 mt-1">Busco un café concentrado, con cuerpo y crema.</p>
+          </button>
+
+          <button onclick="nextStep(1, 'filtro')" class="p-5 rounded-2xl border-2 border-tinta/10 bg-crema hover:border-borbon hover:shadow-md transition-all text-left group">
+            <span class="text-2xl block mb-2">🧪</span>
+            <h4 class="font-bold text-espresso group-hover:text-borbon">Filtro / V60 / Goteo</h4>
+            <p class="text-xs text-cacao/70 mt-1">Me gustan las tazas limpias, aromáticas y suaves.</p>
+          </button>
+
+          <button onclick="nextStep(1, 'prensa')" class="p-5 rounded-2xl border-2 border-tinta/10 bg-crema hover:border-borbon hover:shadow-md transition-all text-left group">
+            <span class="text-2xl block mb-2">🫖</span>
+            <h4 class="font-bold text-espresso group-hover:text-borbon">Prensa / French Press</h4>
+            <p class="text-xs text-cacao/70 mt-1">Prefiero infusiones intensas con bastante textura.</p>
+          </button>
+        </div>
+      </div>
+
+      <!-- Paso 2: Perfil de sabor -->
+      <div id="step-2" class="quiz-step hidden space-y-6">
+        <div class="flex justify-between items-center border-b border-tinta/10 pb-4">
+          <span class="text-xs font-bold text-ambar uppercase tracking-wider">Paso 2 de 3</span>
+          <span class="text-xs text-cacao/60 font-semibold">Tus sabores preferidos</span>
+        </div>
+
+        <h3 class="font-serif text-2xl font-bold text-espresso">¿Qué notas te gusta sentir al tomarlo?</h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <button onclick="nextStep(2, 'frutal')" class="p-5 rounded-2xl border-2 border-tinta/10 bg-crema hover:border-borbon hover:shadow-md transition-all text-left group">
+            <span class="text-2xl block mb-2">🍋</span>
+            <h4 class="font-bold text-espresso group-hover:text-borbon">Cítrico & Frutal</h4>
+            <p class="text-xs text-cacao/70 mt-1">Notas frescas a durazno, flores y acidez brillante.</p>
+          </button>
+
+          <button onclick="nextStep(2, 'balanced')" class="p-5 rounded-2xl border-2 border-tinta/10 bg-crema hover:border-borbon hover:shadow-md transition-all text-left group">
+            <span class="text-2xl block mb-2">🍫</span>
+            <h4 class="font-bold text-espresso group-hover:text-borbon">Chocolate & Caramelo</h4>
+            <p class="text-xs text-cacao/70 mt-1">Sabor balanceado, dulce natural y frutos secos.</p>
+          </button>
+
+          <button onclick="nextStep(2, 'intenso')" class="p-5 rounded-2xl border-2 border-tinta/10 bg-crema hover:border-borbon hover:shadow-md transition-all text-left group">
+            <span class="text-2xl block mb-2">🪵</span>
+            <h4 class="font-bold text-espresso group-hover:text-borbon">Intenso & Especiado</h4>
+            <p class="text-xs text-cacao/70 mt-1">Cacao amargo, baja acidez y final persistente.</p>
+          </button>
+        </div>
+      </div>
+
+      <!-- Paso 3: Momento del día -->
+      <div id="step-3" class="quiz-step hidden space-y-6">
+        <div class="flex justify-between items-center border-b border-tinta/10 pb-4">
+          <span class="text-xs font-bold text-ambar uppercase tracking-wider">Paso 3 de 3</span>
+          <span class="text-xs text-cacao/60 font-semibold">Tu momento de café</span>
+        </div>
+
+        <h3 class="font-serif text-2xl font-bold text-espresso">¿En qué momento del día lo disfrutas más?</h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <button onclick="showResult('manana')" class="p-5 rounded-2xl border-2 border-tinta/10 bg-crema hover:border-borbon hover:shadow-md transition-all text-left group">
+            <span class="text-2xl block mb-2">🌅</span>
+            <h4 class="font-bold text-espresso group-hover:text-borbon">Primera Hora</h4>
+            <p class="text-xs text-cacao/70 mt-1">Para despertar con energía y buen impulso.</p>
+          </button>
+
+          <button onclick="showResult('tarde')" class="p-5 rounded-2xl border-2 border-tinta/10 bg-crema hover:border-borbon hover:shadow-md transition-all text-left group">
+            <span class="text-2xl block mb-2">☀️</span>
+            <h4 class="font-bold text-espresso group-hover:text-borbon">A Media Tarde</h4>
+            <p class="text-xs text-cacao/70 mt-1">Un respiro delicioso durante la jornada.</p>
+          </button>
+
+          <button onclick="showResult('todo-el-dia')" class="p-5 rounded-2xl border-2 border-tinta/10 bg-crema hover:border-borbon hover:shadow-md transition-all text-left group">
+            <span class="text-2xl block mb-2">🔄</span>
+            <h4 class="font-bold text-espresso group-hover:text-borbon">Varias Veces</h4>
+            <p class="text-xs text-cacao/70 mt-1">Tomo varias tazas y busco versatilidad.</p>
+          </button>
+        </div>
+      </div>
+
+      <!-- Resultado Personalizado -->
+      <div id="step-result" class="hidden space-y-6 text-center">
+        <div class="inline-block p-3 rounded-full bg-cafetal/10 text-cafetal mb-2">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        </div>
+        
+        <span class="text-xs font-bold text-ambar uppercase tracking-widest block">¡Match Perfecto Encontrado!</span>
+        <h2 id="result-title" class="font-serif text-3xl sm:text-4xl font-extrabold text-espresso">Tu Selección Ideal: Bourbon Miel & Cítricos</h2>
+        <p id="result-desc" class="text-cacao/80 text-sm max-w-xl mx-auto">
+          Basado en tus respuestas, preparamos un tueste artesanal medio-claro que resaltará la dulzura natural sin amargor.
+        </p>
+
+        <div class="bg-crema p-6 rounded-2xl border border-tinta/10 max-w-md mx-auto text-left space-y-3 shadow-sm">
+          <div class="flex justify-between text-sm">
+            <span class="text-cacao/70">Variedad Recomendada:</span>
+            <span class="font-bold text-espresso">100% Arábica Bourbon</span>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span class="text-cacao/70">Nivel de Tueste:</span>
+            <span class="font-bold text-borbon">Tueste Artesanal Medio</span>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span class="text-cacao/70">Empaque:</span>
+            <span class="font-bold text-espresso">250g Recién Tostado</span>
+          </div>
+          <div class="border-t border-tinta/10 pt-3 flex justify-between items-center">
+            <span class="text-xs text-cacao">Precio especial de prueba:</span>
+            <span class="font-serif text-2xl font-bold text-borbon">$15.90</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+          <button onclick="alert('¡Excelente elección! Añadido a tu carrito.')" class="w-full sm:w-auto px-8 py-3.5 bg-borbon hover:bg-espresso text-white font-bold rounded-full shadow-dorado transition-all duration-300">
+            Pedir Mi Blend Personalizado
+          </button>
+          <button onclick="resetQuiz()" class="text-xs text-cacao/60 hover:text-borbon underline font-semibold">
+            Reiniciar Test
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer Simple -->
+  <footer class="bg-espresso text-crema/70 py-8 text-center text-xs border-t border-ambar/20">
+    <p>© 2026 CAFÉ CONTROL — Tostado artesanal y envíos frescos a tu puerta.</p>
+  </footer>
+
+  <!-- Lógica Interactiva -->
+  <script>
+    let choices = {};
+
+    function nextStep(currentStep, value) {
+      choices[`step${currentStep}`] = value;
+      document.getElementById(`step-${currentStep}`).classList.add('hidden');
+      document.getElementById(`step-${currentStep + 1}`).classList.remove('hidden');
+    }
+
+    function showResult(value) {
+      choices['step3'] = value;
+      document.getElementById('step-3').classList.add('hidden');
+      document.getElementById('step-result').classList.remove('hidden');
+
+      // Personalizar el título según las respuestas
+      const titleEl = document.getElementById('result-title');
+      const descEl = document.getElementById('result-desc');
+
+      if (choices.step2 === 'frutal') {
+        titleEl.innerText = "Tu Match: Reserva Bourbon Cítrico";
+        descEl.innerText = "Ideal para tazas aromáticas, con notas florales y una acidez limpia que resalta al máximo en métodos filtrados.";
+      } else if (choices.step2 === 'intenso') {
+        titleEl.innerText = "Tu Match: Gran Pacamara Cacao Intenso";
+        descEl.innerText = "Un perfil con cuerpo marcado, acidez casi nula y notas a chocolate amargo para empezar el día con fuerza.";
+      } else {
+        titleEl.innerText = "Tu Match: Caturra Caramelo & Almendra";
+        descEl.innerText = "El equilibrio perfecto entre dulzura, suavidad y aroma. Una opción versátil que nunca falla a ninguna hora.";
+      }
+    }
+
+    function resetQuiz() {
+      choices = {};
+      document.getElementById('step-result').classList.add('hidden');
+      document.getElementById('step-1').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
